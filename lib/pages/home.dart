@@ -76,11 +76,23 @@ class _HomeState extends State<Home> {
 
   Widget buildImage(String image, int index, String name) => Container(
       margin: EdgeInsets.symmetric(horizontal: 5.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.asset(image,
-            fit: BoxFit.fitHeight, width: MediaQuery.of(context).size.width),
-      ));
+      child: Stack(children: [
+        ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(image,
+                fit: BoxFit.fitHeight,
+                width: MediaQuery.of(context).size.width)),
+        Container(
+          margin: EdgeInsets.only(top: 130),
+          width: MediaQuery.of(context).size.width,
+          decoration: const BoxDecoration(
+              color: Colors.black26,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20))),
+          child: Text(name,style: TextStyle(color: Colors.white,fontSize: 15.0,fontWeight: FontWeight.w500)),
+        )
+      ]));
 }
 
 class CategoryTile extends StatelessWidget {
@@ -98,7 +110,7 @@ class CategoryTile extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: Image.asset(image,
-                  width: 120, height: 70, fit: BoxFit.cover)),
+                  width: 120, height: 300, fit: BoxFit.cover)),
           Container(
             width: 120,
             height: 70,
